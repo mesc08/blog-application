@@ -1,11 +1,11 @@
 server:
-  port: {PORT}
+  port: 9090
 
 spring:
   datasource:
-    url: {URL}
-    username: {USERNAME}
-    password: {PASSWORD}
+    url: jdbc:postgresql://localhost:5432/blogging-app
+    username: postgres
+    password: root
     driver-class-name: org.postgresql.Driver
   jpa:
     show-sql: true
