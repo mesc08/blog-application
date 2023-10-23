@@ -3,6 +3,7 @@ package com.project.bloggingapp.exceptions;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @Getter
 @Setter
