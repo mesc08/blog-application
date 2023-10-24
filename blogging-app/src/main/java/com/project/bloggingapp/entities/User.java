@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "users")
 @NoArgsConstructor
@@ -24,5 +26,8 @@ public class User {
     private String password;
 
     private String about;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) //child and parent together add and remove
+    private Set<Post> blogPosts;
 
 }
