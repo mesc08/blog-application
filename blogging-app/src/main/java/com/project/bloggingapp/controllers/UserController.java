@@ -4,6 +4,7 @@ import com.project.bloggingapp.entities.User;
 import com.project.bloggingapp.payloads.ApiResponse;
 import com.project.bloggingapp.payloads.UserDto;
 import com.project.bloggingapp.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +20,13 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/")
-    public ResponseEntity<ApiResponse> createUser(@RequestBody UserDto userDto){
+    public ResponseEntity<ApiResponse> createUser(@Valid @RequestBody UserDto userDto){
         UserDto createdUserDto = this.userService.createUser(userDto);
         return ResponseEntity.ok(new ApiResponse(202, "User got created successfully", true, createdUserDto));
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<ApiResponse> updateUser(@RequestBody UserDto userDto, @PathVariable("userId") Integer uid){
+    public ResponseEntity<ApiResponse> updateUser(@Valid @RequestBody UserDto userDto, @PathVariable("userId") Integer uid){
         UserDto updatedUser = this.userService.updateUser(userDto, uid);
         return ResponseEntity.ok(new ApiResponse(200, String.format("User updated with %d succesfully ", uid), true, updatedUser));
     }
