@@ -3,6 +3,7 @@ package com.project.bloggingapp.controllers;
 
 import com.project.bloggingapp.payloads.ApiResponse;
 import com.project.bloggingapp.payloads.PostDto;
+import com.project.bloggingapp.payloads.PostResponse;
 import com.project.bloggingapp.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -47,10 +48,10 @@ public class PostController {
 
     @GetMapping("/posts")
     public ResponseEntity<ApiResponse> getAllPosts(
-            @RequestParam(value = "pageNumber", defaultValue = "1", required = false) Integer pageNumber,
-            @RequestParam(value = "pageSize", defaultValue = "5", required = false) Integer pageSize
+            @RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize
     ){
-        List<PostDto> savedPostDto = this.postService.getAllPost(pageNumber, pageSize);
+        PostResponse savedPostDto = this.postService.getAllPost(pageNumber, pageSize);
         ApiResponse apiResponse = new ApiResponse(200, "got post by category", true, savedPostDto);
         return ResponseEntity.ok(apiResponse);
     }
