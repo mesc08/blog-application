@@ -26,15 +26,24 @@ public class PostController {
     }
 
     @GetMapping("/userId/{userId}/posts")
-    public ResponseEntity<ApiResponse> getPostByUsers(@PathVariable("userId") Integer uid){
-        List<PostDto> savedPostDto = this.postService.getAllPostByUser(uid);
+    public ResponseEntity<ApiResponse> getPostByUsers(@PathVariable("userId") Integer uid,
+                                                      @RequestParam(value="pageNumber", defaultValue = "0", required = false) Integer pageNumber,
+                                                      @RequestParam(value="pageSize", defaultValue = "10", required = false) Integer pageSize,
+                                                      @RequestParam(value="sortBy", defaultValue = "postId", required = false) String sortBy,
+                                                      @RequestParam(value="sortOrder", defaultValue = "asc", required = false) String sortOrder){
+        PostResponse savedPostDto = this.postService.getAllPostByUser(uid, pageNumber, pageSize, sortBy, sortOrder);
         ApiResponse apiResponse = new ApiResponse(200, "got post by users", true, savedPostDto);
         return ResponseEntity.ok(apiResponse);
     }
 
     @GetMapping("/category/{categoryId}/posts")
-    public ResponseEntity<ApiResponse> getPostByCategory(@PathVariable("categoryId") Integer cid){
-        List<PostDto> savedPostDto = this.postService.getAllPostByCategory(cid);
+    public ResponseEntity<ApiResponse> getPostByCategory(@PathVariable("categoryId") Integer cid,
+                                                         @RequestParam(value="pageNumber", defaultValue = "0", required = false) Integer pageNumber,
+                                                         @RequestParam(value="pageSize", defaultValue = "10", required = false) Integer pageSize,
+                                                         @RequestParam(value="sortBy", defaultValue = "postId", required = false) String sortBy,
+                                                           @RequestParam(value="sortOrder", defaultValue = "asc", required = false) String sortOrder
+    ){
+        PostResponse savedPostDto = this.postService.getAllPostByCategory(cid, pageNumber, pageSize,sortBy, sortOrder);
         ApiResponse apiResponse = new ApiResponse(200, "got post by category", true, savedPostDto);
         return ResponseEntity.ok(apiResponse);
     }
@@ -49,9 +58,12 @@ public class PostController {
     @GetMapping("/posts")
     public ResponseEntity<ApiResponse> getAllPosts(
             @RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber,
-            @RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize
+            @RequestParam(value = "pageSize", defaultValue = "10", required = false) Integer pageSize,
+            @RequestParam(value="sortBy", defaultValue = "postId", required = false) String sortBy,
+            @RequestParam(value="sortOrder", defaultValue = "asc", required = false) String sortOrder
+
     ){
-        PostResponse savedPostDto = this.postService.getAllPost(pageNumber, pageSize);
+        PostResponse savedPostDto = this.postService.getAllPost(pageNumber, pageSize, sortBy, sortOrder);
         ApiResponse apiResponse = new ApiResponse(200, "got post by category", true, savedPostDto);
         return ResponseEntity.ok(apiResponse);
     }

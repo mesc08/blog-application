@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -68,8 +69,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public PostResponse getAllPost(Integer pageNumber, Integer pageSize) {
-        Pageable page = PageRequest.of(pageNumber, pageSize);
+    public PostResponse getAllPost(Integer pageNumber, Integer pageSize, String sortBy, String order) {
+        Sort sort = order.equals("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+        Pageable page = PageRequest.of(pageNumber, pageSize, sort);
         Page<Post> pagePost = this.postRepository.findAll(page);
         List<Post> posts = pagePost.getContent();
         List<PostDto> postdtos = posts.stream().map(post -> this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
@@ -91,19 +93,29 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostDto> getAllPostByCategory(Integer categoryId) {
+    public PostResponse getAllPostByCategory(Integer categoryId, Integer pageNumber, Integer pageSize,String sortBy, String order) {
+        Sort sort = order.equals("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
         Category category = this.categoryRepository.findById(categoryId).orElseThrow(() -> new ResourceNotFoundException("post ", " cid ", categoryId));
-        List<Post> posts = this.postRepository.findAllByCategory(category);
+        Pageable page = PageRequest.of(pageNumber, pageSize, sort);
+        Page<Post> Pageposts = this.postRepository.findAllByCategory(category, page);
+        List<Post> posts = Pageposts.getContent();
         List<PostDto> postdtos = posts.stream().map(post -> this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
-        return postdtos;
+        PostResponse postResponse = new PostResponse();
+        postResponse.setContent(postdtos);
+        return postResponse;
     }
 
     @Override
-    public List<PostDto> getAllPostByUser(Integer userid) {
+    public PostResponse getAllPostByUser(Integer userid, Integer pageNumber, Integer pageSize,String sortBy, String order) {
+        Sort sort = order.equals("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
         User user = this.userRepository.findById(userid).orElseThrow(() -> new ResourceNotFoundException("post ", " uid ", userid));
-        List<Post> posts = this.postRepository.findAllByUser(user);
+        Pageable page = PageRequest.of(pageNumber, pageSize, sort);
+        Page<Post> Pageposts = this.postRepository.findAllByUser(user, page);
+        List<Post> posts = Pageposts.getContent();
         List<PostDto> postdtos = posts.stream().map(post -> this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
-        return postdtos;
+        PostResponse postResponse = new PostResponse();
+        postResponse.setContent(postdtos);
+        return postResponse;
     }
 
     @Override
