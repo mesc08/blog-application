@@ -5,11 +5,20 @@ import com.project.bloggingapp.config.AppConstants;
 import com.project.bloggingapp.payloads.ApiResponse;
 import com.project.bloggingapp.payloads.PostDto;
 import com.project.bloggingapp.payloads.PostResponse;
+import com.project.bloggingapp.service.FileService;
 import com.project.bloggingapp.service.PostService;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 @RestController
@@ -18,6 +27,12 @@ public class PostController {
 
     @Autowired
     private PostService postService;
+
+    @Autowired
+    private FileService fileService;
+
+    @Value("project.image")
+    private String FilePath;
 
     @PostMapping("/userId/{userId}/category/{categoryId}/posts")
     public ResponseEntity<ApiResponse> addPost(@RequestBody PostDto postdto, @PathVariable("userId") Integer uid, @PathVariable("categoryId") Integer cid){
@@ -90,5 +105,25 @@ public class PostController {
         List<PostDto> postDtos = this.postService.searchPosts(keyword);
         ApiResponse response = new ApiResponse(AppConstants.OK_STATUS_CODE, String.format(AppConstants.POST_GETBYKEYWORD_SUCCESS,keyword), true, postDtos);
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("image/upload/{postId}")
+    public ResponseEntity<ApiResponse> uploadPostImage(@PathVariable("postId") Integer postId, @RequestParam("image")MultipartFile image) throws IOException {
+        PostDto postDto = this.postService.getPostById(postId);
+        String fileUpload = this.fileService.uploadImage(this.FilePath, image);
+        postDto.setImageName(fileUpload);
+        PostDto savedpostDto = this.postService.updatePost(postDto, postId);
+        ApiResponse response = new ApiResponse(AppConstants.OK_STATUS_CODE, AppConstants.POST_UPDATED_SUCCESS, true, savedpostDto);
+        return null;
+    }
+
+    @GetMapping(value = "image/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public void downloadImage(
+            @PathVariable("imageName") String imageName,
+            HttpServletResponse response
+    )throws IOException{
+        InputStream resource = this.fileService.getResource(this.FilePath, imageName);
+        response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+        StreamUtils.copy(resource, response.getOutputStream());
     }
 }
