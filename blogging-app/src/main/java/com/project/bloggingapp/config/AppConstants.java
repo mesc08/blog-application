@@ -66,4 +66,7 @@ public class AppConstants {
     public static  final String POST_TITLE_COLUMN_NAME = "post_title";
     public static final String POST_USER_COLUMN_JOIN = "user_id";
     public static final String POST_CATEGORY_COLUMN_JOIN = "category_id";
+    public static final String COMMENT_TABLE = "blog_comment";
+    public static final String COMMENT_ADDED_MSG = "Comment added successfully";
+    public static final String COMMENT_DELETED_MSG = "Comment deleted successfully";
 }

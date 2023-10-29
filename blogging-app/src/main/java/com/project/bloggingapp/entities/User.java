@@ -31,4 +31,7 @@ public class User {
     @OneToMany(mappedBy = AppConstants.USER_MAPPED, cascade = CascadeType.ALL) //child and parent together add and remove
     private Set<Post> blogPosts;
 
+
+    @OneToMany(mappedBy = AppConstants.USER_MAPPED, cascade = CascadeType.ALL)
+    private Set<Comment> blogComments;
 }

@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -22,4 +23,6 @@ public class PostDto {
     private CategoryDto categoryDto;
 
     private UserDto userDto;
+
+    private Set<CommentDto> CommentDto;
 }

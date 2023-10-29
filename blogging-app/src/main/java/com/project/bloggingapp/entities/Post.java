@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = AppConstants.POST_TABLE_NAME)
@@ -35,4 +36,8 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = AppConstants.POST_USER_COLUMN_JOIN)
     private User user;
+
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private Set<Comment> comments;
 }
