@@ -82,4 +82,12 @@ public class PostController {
         ApiResponse response = new ApiResponse(200, "deleted category ", true, savedPost);
         return ResponseEntity.ok(response);
     }
+
+    //search
+    @GetMapping("/posts/search/{keywords}")
+    public ResponseEntity<ApiResponse> searchPostByTitle(@PathVariable("keywords") String keyword){
+        List<PostDto> postDtos = this.postService.searchPosts(keyword);
+        ApiResponse response = new ApiResponse(200, String.format("got post by keyword %s",keyword), true, postDtos);
+        return ResponseEntity.ok(response);
+    }
 }

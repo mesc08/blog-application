@@ -6,6 +6,8 @@ import com.project.bloggingapp.entities.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,4 +18,9 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
     Page<Post> findAllByUser(User user, Pageable page);
 
     Page<Post> findAllByCategory(Category category, Pageable page);
+
+
+    //if content findByContentContaining
+    @Query("SELECT p from Post p where p.title like :key")
+    List<Post> searchTitleKeyword(@Param("key") String title);
 }
