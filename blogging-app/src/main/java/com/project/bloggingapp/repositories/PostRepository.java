@@ -1,5 +1,6 @@
 package com.project.bloggingapp.repositories;
 
+import com.project.bloggingapp.config.AppConstants;
 import com.project.bloggingapp.entities.Category;
 import com.project.bloggingapp.entities.Post;
 import com.project.bloggingapp.entities.User;
@@ -21,6 +22,6 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 
 
     //if content findByContentContaining
-    @Query("SELECT p from Post p where p.title like :key")
+    @Query(AppConstants.SEARCH_KEYWORD_QUERY)
     List<Post> searchTitleKeyword(@Param("key") String title);
 }

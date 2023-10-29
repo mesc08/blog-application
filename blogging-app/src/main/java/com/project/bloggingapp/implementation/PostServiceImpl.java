@@ -1,5 +1,6 @@
 package com.project.bloggingapp.implementation;
 
+import com.project.bloggingapp.config.AppConstants;
 import com.project.bloggingapp.entities.Category;
 import com.project.bloggingapp.entities.Post;
 import com.project.bloggingapp.entities.User;
@@ -70,7 +71,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PostResponse getAllPost(Integer pageNumber, Integer pageSize, String sortBy, String order) {
-        Sort sort = order.equals("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+        Sort sort = order.equals(AppConstants.SORT_ORDER) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
         Pageable page = PageRequest.of(pageNumber, pageSize, sort);
         Page<Post> pagePost = this.postRepository.findAll(page);
         List<Post> posts = pagePost.getContent();
@@ -94,7 +95,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PostResponse getAllPostByCategory(Integer categoryId, Integer pageNumber, Integer pageSize,String sortBy, String order) {
-        Sort sort = order.equals("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+        Sort sort = order.equals(AppConstants.SORT_ORDER) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
         Category category = this.categoryRepository.findById(categoryId).orElseThrow(() -> new ResourceNotFoundException("post ", " cid ", categoryId));
         Pageable page = PageRequest.of(pageNumber, pageSize, sort);
         Page<Post> Pageposts = this.postRepository.findAllByCategory(category, page);
@@ -107,7 +108,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PostResponse getAllPostByUser(Integer userid, Integer pageNumber, Integer pageSize,String sortBy, String order) {
-        Sort sort = order.equals("asc") ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+        Sort sort = order.equals(AppConstants.SORT_ORDER) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
         User user = this.userRepository.findById(userid).orElseThrow(() -> new ResourceNotFoundException("post ", " uid ", userid));
         Pageable page = PageRequest.of(pageNumber, pageSize, sort);
         Page<Post> Pageposts = this.postRepository.findAllByUser(user, page);

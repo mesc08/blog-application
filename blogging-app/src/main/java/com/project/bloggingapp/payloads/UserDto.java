@@ -1,5 +1,6 @@
 package com.project.bloggingapp.payloads;
 
+import com.project.bloggingapp.config.AppConstants;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,23 +14,23 @@ public class UserDto {
     private int id;
 
     @NotNull
-    @Size(min = 4, message = "Username should be of minsize 4")
+    @Size(min = AppConstants.USER_NAME_SIZE, message = AppConstants.USER_NAME_MSG)
     private String name;
 
-    @Email(message = "given email address is not valid")
+    @Email(message = AppConstants.USER_EMAIL_MSG)
     private String email;
 
-    @NotEmpty(message = "must add password")
-    @Size(min=8, message = "Password minimum of length 8")
-    @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", message = "confirm password is invalid not matching regex")
+    @NotEmpty(message = AppConstants.USER_PASSWORD_NOT_EMPTY)
+    @Size(min=AppConstants.USER_PASSWORD_SIZE, message = AppConstants.USER_PASSWORD_SIZE_MSG)
+    @Pattern(regexp = AppConstants.USER_PASSWORD_REGEX, message = AppConstants.USER_PASSWORD_REGEX_MSG)
     private String password;
 
-    @NotEmpty(message = "must add confirm password")
-    @Size(min=8, message = "Confirm Password minimum of length 8")
-    @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", message = "confirm password is invalid not matching regex")
+    @NotEmpty(message = AppConstants.USER_CONFIRMPASSWORD_NOT_EMPTY)
+    @Size(min=AppConstants.USER_PASSWORD_SIZE, message = AppConstants.USER_CONFIRMPASSWORD_SIZE_MSG)
+    @Pattern(regexp = AppConstants.USER_PASSWORD_REGEX, message = AppConstants.USER_CONFIRMPASSWORD_REGEX_MSG)
     private String confirmpassword;
 
 
-    @NotEmpty(message = "about section cannot be empty")
+    @NotEmpty(message = AppConstants.USER_ABOUT_NOT_EMPTY)
     private String about;
 }

@@ -1,5 +1,6 @@
 package com.project.bloggingapp.controllers;
 
+import com.project.bloggingapp.config.AppConstants;
 import com.project.bloggingapp.entities.User;
 import com.project.bloggingapp.payloads.ApiResponse;
 import com.project.bloggingapp.payloads.UserDto;
@@ -22,30 +23,30 @@ public class UserController {
     @PostMapping("/")
     public ResponseEntity<ApiResponse> createUser(@Valid @RequestBody UserDto userDto){
         UserDto createdUserDto = this.userService.createUser(userDto);
-        return ResponseEntity.ok(new ApiResponse(202, "User got created successfully", true, createdUserDto));
+        return ResponseEntity.ok(new ApiResponse(AppConstants.CREATED_STATUS_CODE, AppConstants.USER_ADDED_SUCCESS, true, createdUserDto));
     }
 
     @PutMapping("/{userId}")
     public ResponseEntity<ApiResponse> updateUser(@Valid @RequestBody UserDto userDto, @PathVariable("userId") Integer uid){
         UserDto updatedUser = this.userService.updateUser(userDto, uid);
-        return ResponseEntity.ok(new ApiResponse(200, String.format("User updated with %d succesfully ", uid), true, updatedUser));
+        return ResponseEntity.ok(new ApiResponse(AppConstants.OK_STATUS_CODE, String.format(AppConstants.USER_UPDATED_SUCCESS, uid), true, updatedUser));
     }
 
     @DeleteMapping("/{userId}")
     public ResponseEntity<ApiResponse> deleteUser(@PathVariable("userId") Integer uid){
         this.userService.deleteUser(uid);
-        return ResponseEntity.ok(new ApiResponse(200, "User Deleted Successfully", true, null));
+        return ResponseEntity.ok(new ApiResponse(AppConstants.OK_STATUS_CODE, AppConstants.USER_DELETED_SUCCESS, true, null));
     }
 
     @GetMapping("/")
     public ResponseEntity<ApiResponse> getAllUsers(){
         List<UserDto> allUserDto = this.userService.getAllUsers();
-        return ResponseEntity.ok(new ApiResponse(200, "Found all users", false, allUserDto));
+        return ResponseEntity.ok(new ApiResponse(AppConstants.OK_STATUS_CODE, AppConstants.USER_ALL_SUCCESS, false, allUserDto));
     }
 
     @GetMapping("/{userId}")
     public ResponseEntity<ApiResponse> getSingleUser(@PathVariable("userId") Integer uid){
         UserDto singleuser = this.userService.getUserById(uid);
-        return ResponseEntity.ok(new ApiResponse(200, String.format("Found user by %d id", uid), false, singleuser));
+        return ResponseEntity.ok(new ApiResponse(AppConstants.OK_STATUS_CODE, String.format(AppConstants.USER_GET_SUCCESS, uid), false, singleuser));
     }
 }

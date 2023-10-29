@@ -1,5 +1,6 @@
 package com.project.bloggingapp.controllers;
 
+import com.project.bloggingapp.config.AppConstants;
 import com.project.bloggingapp.payloads.ApiResponse;
 import com.project.bloggingapp.payloads.CategoryDto;
 import com.project.bloggingapp.service.CategoryService;
@@ -20,14 +21,14 @@ public class CategoryController {
     @PostMapping("/")
     public ResponseEntity<ApiResponse> addCategory(@Valid @RequestBody CategoryDto categoryDto){
         CategoryDto savedCategory = this.categoryService.createCategory(categoryDto);
-        ApiResponse response = new ApiResponse(202, "added category ", true, savedCategory);
+        ApiResponse response = new ApiResponse(AppConstants.CREATED_STATUS_CODE, AppConstants.CATEGORY_ADDED_SUCCESS, true, savedCategory);
         return ResponseEntity.ok(response);
     }
 
     @PutMapping("/{categoryId}")
     public ResponseEntity<ApiResponse> updateCategory(@Valid @RequestBody CategoryDto categoryDto, @PathVariable("categoryId") Integer cid){
         CategoryDto updatedCategory = this.categoryService.updateCategory(categoryDto, cid);
-        ApiResponse response = new ApiResponse(200, "updated category ", true, updatedCategory);
+        ApiResponse response = new ApiResponse(AppConstants.OK_STATUS_CODE, AppConstants.CATEGORY_UPDATE_SUCCESS, true, updatedCategory);
         return ResponseEntity.ok(response);
     }
 
@@ -35,21 +36,21 @@ public class CategoryController {
     @DeleteMapping("/{categoryId}")
     public ResponseEntity<ApiResponse> deleteCategory(@PathVariable("categoryId") Integer cid){
         this.categoryService.deleteCategory(cid);
-        ApiResponse response = new ApiResponse(200, "deleted category ", true, null);
+        ApiResponse response = new ApiResponse(AppConstants.OK_STATUS_CODE, AppConstants.CATEGORY_DELETE_SUCCESS, true, null);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{categoryId}")
     public ResponseEntity<ApiResponse> getSingleCategory(@PathVariable("categoryId") Integer cid){
         CategoryDto categoryDto = this.categoryService.getCategory(cid);
-        ApiResponse response = new ApiResponse(200, "got category ", true, categoryDto);
+        ApiResponse response = new ApiResponse(AppConstants.OK_STATUS_CODE, AppConstants.CATEGORY_GOT_SUCCCESS, true, categoryDto);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/")
     public ResponseEntity<ApiResponse> getCategories(){
         List<CategoryDto> categoryDtos = this.categoryService.getAllCategories();
-        ApiResponse response = new ApiResponse(200, "got  all categories ", true, categoryDtos);
+        ApiResponse response = new ApiResponse(AppConstants.OK_STATUS_CODE, AppConstants.CATEGORY_GOT_ALL_SUCCESS, true, categoryDtos);
         return ResponseEntity.ok(response);
     }
 }

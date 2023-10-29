@@ -1,5 +1,6 @@
 package com.project.bloggingapp.entities;
 
+import com.project.bloggingapp.config.AppConstants;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,7 +8,7 @@ import lombok.Setter;
 import java.util.Date;
 
 @Entity
-@Table(name = "blog_posts")
+@Table(name = AppConstants.POST_TABLE_NAME)
 @NoArgsConstructor
 @Getter
 @Setter
@@ -17,10 +18,10 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer postid;
 
-    @Column(name = "post_title", length = 100, nullable = false)
+    @Column(name = AppConstants.POST_TITLE_COLUMN_NAME, length = AppConstants.POST_TITLE_SIZE, nullable = false)
     private String title;
 
-    @Column(length = 100000)
+    @Column(length = AppConstants.POST_CONTENT_COLUMN_SIZE)
     private String content;
 
     private String imageName;
@@ -28,10 +29,10 @@ public class Post {
     private Date addeddate;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = AppConstants.POST_CATEGORY_COLUMN_JOIN)
     private Category category;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = AppConstants.POST_USER_COLUMN_JOIN)
     private User user;
 }

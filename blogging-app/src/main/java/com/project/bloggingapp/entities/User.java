@@ -1,5 +1,6 @@
 package com.project.bloggingapp.entities;
 
+import com.project.bloggingapp.config.AppConstants;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,7 +9,7 @@ import lombok.Setter;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table(name = AppConstants.USER_TABLE_NAME)
 @NoArgsConstructor
 @Getter
 @Setter
@@ -20,14 +21,14 @@ public class User {
 
     private String name;
 
-    @Column(name = "username", nullable = false, length = 100)
+    @Column(name = AppConstants.USER_EMAIL_COLUMN, nullable = false, length = AppConstants.USER_EMAIL_COLUMN_LENGTH)
     private String email;
 
     private String password;
 
     private String about;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) //child and parent together add and remove
+    @OneToMany(mappedBy = AppConstants.USER_MAPPED, cascade = CascadeType.ALL) //child and parent together add and remove
     private Set<Post> blogPosts;
 
 }

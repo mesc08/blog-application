@@ -1,5 +1,6 @@
 package com.project.bloggingapp.exceptions;
 
+import com.project.bloggingapp.config.AppConstants;
 import com.project.bloggingapp.payloads.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ApiResponse> resourceNotFoundExceptionHandler(ResourceNotFoundException ex){
         String msg = ex.getMessage();
-        ApiResponse apiResponse = new ApiResponse(404, msg, false, null);
+        ApiResponse apiResponse = new ApiResponse(AppConstants.NOTFOUND_STATUS_CODE, msg, false, null);
         return new ResponseEntity(apiResponse, HttpStatus.NOT_FOUND);
     }
 
@@ -29,7 +30,7 @@ public class GlobalExceptionHandler {
             String msg = error.getDefaultMessage();
             response.put(field, msg);
         });
-        ApiResponse apiResponse = new ApiResponse(400, "Validation error ", false, response);
+        ApiResponse apiResponse = new ApiResponse(AppConstants.BAD_STATUS_CODE, AppConstants.VALIDATION_ERROR, false, response);
         return new ResponseEntity(apiResponse, HttpStatus.BAD_REQUEST);
     }
 }
