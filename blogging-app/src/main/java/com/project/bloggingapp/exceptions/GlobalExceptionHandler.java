@@ -8,7 +8,9 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MultipartException;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,5 +43,19 @@ public class GlobalExceptionHandler {
         String msg = ex.getMessage();
         ApiResponse apiResponse = new ApiResponse(AppConstants.NOTFOUND_STATUS_CODE, msg, false, null);
         return new ResponseEntity(apiResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(FileNotFoundException.class)
+    public ResponseEntity<ApiResponse> FileNotFoundHandler(FileNotFoundException ex){
+        String msg = ex.getMessage();
+        ApiResponse apiResponse = new ApiResponse(AppConstants.NOTFOUND_STATUS_CODE, msg, false, null);
+        return new ResponseEntity(apiResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(MultipartException.class)
+    public ResponseEntity<ApiResponse> MulitpartExceptionhandler(MultipartException exception){
+        String msg = exception.getMessage();
+        ApiResponse apiResponse = new ApiResponse(AppConstants.BAD_STATUS_CODE, msg, false, null);
+        return new ResponseEntity(apiResponse, HttpStatus.BAD_REQUEST);
     }
 }
