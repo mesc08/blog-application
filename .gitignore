@@ -1,2 +1,2 @@
-**/src/main/resources/application.yml
-**/project.image/
+!**/src/main/resources/application.yml
+!**/project.image/
