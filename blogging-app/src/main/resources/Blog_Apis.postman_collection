@@ -1,0 +1,341 @@
+{
+	"info": {
+		"_postman_id": "ff5c5708-9ea8-4bcc-a2bf-e8843c5c5a9b",
+		"name": "Blog Apis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "14949809"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "save users",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"srijan chakraborty\",\r\n    \"email\": \"srijan@gmail.com\",\r\n    \"password\": \"Srijan123@\",\r\n    \"about\": \"boring and not a good dev\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9090/api/users/"
+					},
+					"response": []
+				},
+				{
+					"name": "get single users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"users",
+								"1"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:9090/api/users/"
+					},
+					"response": []
+				},
+				{
+					"name": "update users",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"wrick chakraborty\",\r\n    \"about\": \"love to draw pictures\",\r\n    \"password\": \"Srijan123@\",\r\n    \"email\" : \"srijan@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9090/api/users/1"
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:9090/api/users/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "blog_post",
+			"item": [
+				{
+					"name": "save post of user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Ek tha tiger\",\r\n    \"content\": \"Action movie where Salman khan is the main lead\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9090/api/post/userId/2/category/2/posts"
+					},
+					"response": []
+				},
+				{
+					"name": "get all post by users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:9090/api/post/userId/2/posts"
+					},
+					"response": []
+				},
+				{
+					"name": "get post by postid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:9090/api/post/2"
+					},
+					"response": []
+				},
+				{
+					"name": "get all posts",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:9090/api/post/3"
+					},
+					"response": []
+				},
+				{
+					"name": "update posts",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"tiger zinda hai 3\",\r\n    \"content\": \"Action movie where Salman khan is the main lead\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9090/api/post/2"
+					},
+					"response": []
+				},
+				{
+					"name": "get post by title search keyword",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:9090/api/post/posts/search/tiger"
+					},
+					"response": []
+				},
+				{
+					"name": "upload image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/srija/Downloads/samurai.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/post/image/upload/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"post",
+								"image",
+								"upload",
+								"5"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getimage",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:9090/api/post/image/7ce2f402-df03-4c2e-9471-18dbc862da3a.png"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "blog_comments",
+			"item": [
+				{
+					"name": "save comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"not so interesting\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9090/api/comment/post/2/user/2"
+					},
+					"response": []
+				},
+				{
+					"name": "delete comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:9090/api/comment/2"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "categories",
+			"item": [
+				{
+					"name": "add categories",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"catTitle\": \"COMEDY\",\r\n    \"description\": \" All sort of comedy movies\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9090/api/categories/"
+					},
+					"response": []
+				},
+				{
+					"name": "update category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryTitle\": \"ACTION\",\r\n    \"description\": \"All type of action movies\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:9090/api/categories/2"
+					},
+					"response": []
+				},
+				{
+					"name": "get a category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:9090/api/categories/2"
+					},
+					"response": []
+				},
+				{
+					"name": "get all categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:9090/api/categories/"
+					},
+					"response": []
+				},
+				{
+					"name": "delete category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:9090/api/categories/1"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

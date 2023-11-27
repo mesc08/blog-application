@@ -32,7 +32,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryDto updateCategory(CategoryDto categoryDto, Integer cid) {
         Category foundCategory = this.categoryRepository.findById(cid).orElseThrow(()-> new ResourceNotFoundException("category ", " cid ", cid));
-        foundCategory.setCategoryTitle(categoryDto.getCatTitle());
+        foundCategory.setCategoryTitle(categoryDto.getCategoryTitle());
         foundCategory.setDescription(categoryDto.getDescription());
         Category changedCategory = this.categoryRepository.save(foundCategory);
         CategoryDto savedCategory = this.modelMapper.map(changedCategory, CategoryDto.class);

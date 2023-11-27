@@ -12,6 +12,8 @@ import java.util.Set;
 @Setter
 public class PostDto {
 
+    private String postId;
+
     private String title;
 
     private String content;
@@ -20,9 +22,9 @@ public class PostDto {
 
     private Date addeddate;
 
-    private CategoryDto categoryDto;
+    private CategoryDto category;
 
-    private UserDto userDto;
+    private UserDto user;
 
-    private Set<CommentDto> CommentDto;
+    private Set<CommentDto> comments;
 }

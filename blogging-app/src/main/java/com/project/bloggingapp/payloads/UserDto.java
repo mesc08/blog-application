@@ -25,7 +25,7 @@ public class UserDto {
     @Pattern(regexp = AppConstants.USER_PASSWORD_REGEX, message = AppConstants.USER_PASSWORD_REGEX_MSG)
     private String password;
 
-    @NotEmpty(message = AppConstants.USER_CONFIRMPASSWORD_NOT_EMPTY)
+//    @NotEmpty(message = AppConstants.USER_CONFIRMPASSWORD_NOT_EMPTY)
     @Size(min=AppConstants.USER_PASSWORD_SIZE, message = AppConstants.USER_CONFIRMPASSWORD_SIZE_MSG)
     @Pattern(regexp = AppConstants.USER_PASSWORD_REGEX, message = AppConstants.USER_CONFIRMPASSWORD_REGEX_MSG)
     private String confirmpassword;

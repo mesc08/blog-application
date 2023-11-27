@@ -15,7 +15,7 @@ public class CategoryDto {
 
     @NotEmpty(message = AppConstants.CATEGORY_TITLE_NOT_EMPTY)
     @Size(min=AppConstants.CATEGORY_TITLE_SIZE, message = AppConstants.CATEGORY_TITLE_SIZE_MSG)
-    private String catTitle;
+    private String categoryTitle;
 
     @NotEmpty(message = AppConstants.CATEGORY_DESCRIPTION_NOT_EMPTY)
     @Size(min=AppConstants.CATEGORY_DESCRIPTION_SIZE, message = AppConstants.CATEGORY_DESCRIPTION_SIZE_MSG)

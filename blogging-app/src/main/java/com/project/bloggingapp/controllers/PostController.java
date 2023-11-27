@@ -114,7 +114,7 @@ public class PostController {
         postDto.setImageName(fileUpload);
         PostDto savedpostDto = this.postService.updatePost(postDto, postId);
         ApiResponse response = new ApiResponse(AppConstants.OK_STATUS_CODE, AppConstants.POST_UPDATED_SUCCESS, true, savedpostDto);
-        return null;
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping(value = "image/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)

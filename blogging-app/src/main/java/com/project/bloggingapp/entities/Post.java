@@ -17,7 +17,7 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer postid;
+    private Integer postId;
 
     @Column(name = AppConstants.POST_TITLE_COLUMN_NAME, length = AppConstants.POST_TITLE_SIZE, nullable = false)
     private String title;
