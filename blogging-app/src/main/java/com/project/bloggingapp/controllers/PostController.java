@@ -1,13 +1,12 @@
 package com.project.bloggingapp.controllers;
 
 
-import com.project.bloggingapp.config.AppConstants;
+import com.project.bloggingapp.utils.AppConstants;
 import com.project.bloggingapp.payloads.ApiResponse;
 import com.project.bloggingapp.payloads.PostDto;
 import com.project.bloggingapp.payloads.PostResponse;
 import com.project.bloggingapp.service.FileService;
 import com.project.bloggingapp.service.PostService;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

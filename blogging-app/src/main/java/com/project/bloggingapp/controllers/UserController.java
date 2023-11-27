@@ -1,18 +1,15 @@
 package com.project.bloggingapp.controllers;
 
-import com.project.bloggingapp.config.AppConstants;
-import com.project.bloggingapp.entities.User;
+import com.project.bloggingapp.utils.AppConstants;
 import com.project.bloggingapp.payloads.ApiResponse;
 import com.project.bloggingapp.payloads.UserDto;
 import com.project.bloggingapp.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/users")

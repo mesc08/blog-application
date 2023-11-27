@@ -1,8 +1,5 @@
-package com.project.bloggingapp.config;
+package com.project.bloggingapp.utils;
 
-import org.springframework.context.annotation.Configuration;
-
-@Configuration
 public class AppConstants {
     public static final String PAGE_NUMBER = "0";
     public static final String PAGE_SIZE = "10";

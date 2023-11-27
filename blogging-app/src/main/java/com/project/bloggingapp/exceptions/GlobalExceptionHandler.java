@@ -1,6 +1,6 @@
 package com.project.bloggingapp.exceptions;
 
-import com.project.bloggingapp.config.AppConstants;
+import com.project.bloggingapp.utils.AppConstants;
 import com.project.bloggingapp.payloads.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

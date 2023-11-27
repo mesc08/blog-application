@@ -1,7 +1,7 @@
 package com.project.bloggingapp.entities;
 
 
-import com.project.bloggingapp.config.AppConstants;
+import com.project.bloggingapp.utils.AppConstants;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

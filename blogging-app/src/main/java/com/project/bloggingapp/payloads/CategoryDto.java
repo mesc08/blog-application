@@ -1,6 +1,6 @@
 package com.project.bloggingapp.payloads;
 
-import com.project.bloggingapp.config.AppConstants;
+import com.project.bloggingapp.utils.AppConstants;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;

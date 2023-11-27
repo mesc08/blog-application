@@ -1,6 +1,6 @@
 package com.project.bloggingapp.implementation;
 
-import com.project.bloggingapp.config.AppConstants;
+import com.project.bloggingapp.utils.AppConstants;
 import com.project.bloggingapp.entities.Category;
 import com.project.bloggingapp.entities.Post;
 import com.project.bloggingapp.entities.User;

@@ -1,6 +1,6 @@
 package com.project.bloggingapp.controllers;
 
-import com.project.bloggingapp.config.AppConstants;
+import com.project.bloggingapp.utils.AppConstants;
 import com.project.bloggingapp.payloads.ApiResponse;
 import com.project.bloggingapp.payloads.CommentDto;
 import com.project.bloggingapp.service.CommentService;
