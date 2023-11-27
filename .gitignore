@@ -1,2 +1,2 @@
-blogging-app/src/main/resources/application.yml
-blogging-app/project.image
+**/src/main/resources/application.yml
+**/project.image/
