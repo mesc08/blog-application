@@ -7,6 +7,9 @@ import com.project.bloggingapp.repositories.UserRepository;
 import com.project.bloggingapp.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -68,5 +71,11 @@ public class UserServiceImpl implements UserService {
                 "User", " Id ", userId
         ));
         this.userRepository.delete(user);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = this.userRepository.findByEmail(username).orElseThrow(()-> new ResourceNotFoundException("User ", " email ", username));
+        return user;
     }
 }
