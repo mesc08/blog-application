@@ -1,1 +1,2 @@
-blogging-app/src/main/resources/application.yml
+!blogging-app/src/main/resources/application.yml
+!blogging-app/project.image
