@@ -30,3 +30,8 @@ logging:
        org:
          springframework:
              security: DEBUG
+token:
+    expirationms: 82400000
+    refreshms: 41200000
+    secret:
+        key: "131442352366098asdn1379423nkljsfj081013"
